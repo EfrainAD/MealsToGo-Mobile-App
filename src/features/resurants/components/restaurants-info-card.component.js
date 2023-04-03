@@ -5,12 +5,12 @@ import { Card } from 'react-native-paper'
 
 /* padding: 10px; */
 const RestaurantCard = styled(Card)`
-   background: ${(props) => props.theme.colors.brand.primary};
+   background: ${(props) => props.theme.colors.bg.primary};
    margin: ${(props) => props.theme.space[2]};
-   padding: ${(props) => props.theme.space[0]}
-      ${(props) => props.theme.space[3]};
+   padding: 0 ${(props) => props.theme.space[3]};
 `
 const Title = styled(Text)`
+   font-family: ${(props) => props.theme.fonts.body};
    color: ${(props) => props.theme.colors.text.primary};
    font-weight: bold;
    text-align: center;
