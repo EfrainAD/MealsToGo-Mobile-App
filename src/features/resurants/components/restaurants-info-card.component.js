@@ -6,19 +6,20 @@ import { Card } from 'react-native-paper'
 /* padding: 10px; */
 const RestaurantCard = styled(Card)`
    background: ${(props) => props.theme.colors.brand.primary};
-   margin: 15px;
-   padding: 0 10px;
+   margin: ${(props) => props.theme.space[2]};
+   padding: ${(props) => props.theme.space[0]}
+      ${(props) => props.theme.space[3]};
 `
 const Title = styled(Text)`
-   color: white;
+   color: ${(props) => props.theme.colors.text.primary};
    font-weight: bold;
    text-align: center;
-   font-size: 20px;
-   padding: 15px;
+   font-size: ${(props) => props.theme.fontSizes.title};
+   padding: ${(props) => props.theme.space[3]};
 `
 const Content = styled(Text)`
-   color: white;
-   padding: 15px;
+   color: ${(props) => props.theme.colors.text.primary};
+   padding: ${(props) => props.theme.space[3]};
    text-align: center;
 `
 
