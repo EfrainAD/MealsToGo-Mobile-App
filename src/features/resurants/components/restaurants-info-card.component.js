@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { SvgXml } from 'react-native-svg'
-import { Text, View } from 'react-native'
+import { Image, Text, View, style, StyleSheet } from 'react-native'
 import { Card } from 'react-native-paper'
 import star from '../../../../assets/star.js'
 import open from '../../../../assets/open.js'
@@ -32,22 +32,33 @@ const Rating = styled(View)`
    flex-direction: row;
    justify-content: center;
 `
-const Row = styled(View)`
+const SectionRow = styled(View)`
    flex-direction: row;
    justify-content: space-between;
    margin: ${(props) => props.theme.space[2]} 0;
 `
+const RestaurantStatusContainer = styled(View)`
+   flex-direction: row;
+   justify-content: space-between;
+`
+const Icon = styled(View)`
+   margin: 0 ${(props) => props.theme.space[1]};
+`
+const RedText = styled(Text)`
+   color: red;
+`
+
 export const RestaurantInfoCard = (restaurant = {}) => {
    const {
       name = 'Some Restaurant',
-      icon,
+      icon = 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png',
       photos = [
          'https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg',
       ],
       address = '100 some random street',
       isOpenNow = true,
       rating = 4,
-      isClosedTemporarily,
+      isClosedTemporarily = true,
    } = restaurant
 
    const starRating = Array.from({ length: Math.floor(rating) }, (_, index) => (
@@ -59,12 +70,29 @@ export const RestaurantInfoCard = (restaurant = {}) => {
          <Card.Cover source={{ uri: photos[0] }} />
          <Info>
             <Title>{name}</Title>
-            <Row>
+            {isClosedTemporarily && (
+               <RedText variant="label">CLOSED TEMPORARILY</RedText>
+            )}
+            <SectionRow>
                <Rating>{starRating}</Rating>
-               {isOpenNow && <SvgXml xml={open} width={15} height={15} />}
-            </Row>
+               <RestaurantStatusContainer>
+                  {isOpenNow && (
+                     <Icon>
+                        <SvgXml xml={open} width={15} height={15} />
+                     </Icon>
+                  )}
+                  {icon && (
+                     <Icon>
+                        <Image style={styles.icon} source={{ uri: icon }} />
+                     </Icon>
+                  )}
+               </RestaurantStatusContainer>
+            </SectionRow>
             <Address>{address}</Address>
          </Info>
       </RestaurantCard>
    )
 }
+const styles = StyleSheet.create({
+   icon: { width: 20, height: 20 },
+})
