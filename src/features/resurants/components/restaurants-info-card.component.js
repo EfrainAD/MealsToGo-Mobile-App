@@ -4,6 +4,7 @@ import { SvgXml } from 'react-native-svg'
 import { Text, View } from 'react-native'
 import { Card } from 'react-native-paper'
 import star from '../../../../assets/star.js'
+import open from '../../../../assets/open.js'
 
 /* padding: 10px; */
 const RestaurantCard = styled(Card)`
@@ -29,8 +30,12 @@ const Info = styled(View)`
 `
 const Rating = styled(View)`
    flex-direction: row;
-   padding: ${(props) => props.theme.space[2]} 0;
    justify-content: center;
+`
+const Row = styled(View)`
+   flex-direction: row;
+   justify-content: space-between;
+   margin: ${(props) => props.theme.space[2]} 0;
 `
 export const RestaurantInfoCard = (restaurant = {}) => {
    const {
@@ -54,7 +59,10 @@ export const RestaurantInfoCard = (restaurant = {}) => {
          <Card.Cover source={{ uri: photos[0] }} />
          <Info>
             <Title>{name}</Title>
-            <Rating>{starRating}</Rating>
+            <Row>
+               <Rating>{starRating}</Rating>
+               {isOpenNow && <SvgXml xml={open} width={15} height={15} />}
+            </Row>
             <Address>{address}</Address>
          </Info>
       </RestaurantCard>
