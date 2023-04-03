@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
+import { SvgXml } from 'react-native-svg'
 import { Text, View } from 'react-native'
 import { Card } from 'react-native-paper'
+import star from '../../../../assets/star.js'
 
 /* padding: 10px; */
 const RestaurantCard = styled(Card)`
@@ -15,7 +17,6 @@ const Title = styled(Text)`
    font-weight: ${(props) => props.theme.fontWeights.bold};
    text-align: center;
    font-size: ${(props) => props.theme.fontSizes.title};
-   padding-bottom: ${(props) => props.theme.space[1]};
 `
 const Address = styled(Text)`
    font-family: ${(props) => props.theme.fonts.body};
@@ -25,6 +26,11 @@ const Address = styled(Text)`
 `
 const Info = styled(View)`
    padding: ${(props) => props.theme.space[4]};
+`
+const Rating = styled(View)`
+   flex-direction: row;
+   padding: ${(props) => props.theme.space[2]} 0;
+   justify-content: center;
 `
 export const RestaurantInfoCard = (restaurant = {}) => {
    const {
@@ -39,11 +45,16 @@ export const RestaurantInfoCard = (restaurant = {}) => {
       isClosedTemporarily,
    } = restaurant
 
+   const starRating = Array.from({ length: Math.floor(rating) }, (_, index) => (
+      <SvgXml key={index} xml={star} width={20} height={20} />
+   ))
+
    return (
       <RestaurantCard elevation={5}>
          <Card.Cover source={{ uri: photos[0] }} />
          <Info>
             <Title>{name}</Title>
+            <Rating>{starRating}</Rating>
             <Address>{address}</Address>
          </Info>
       </RestaurantCard>
