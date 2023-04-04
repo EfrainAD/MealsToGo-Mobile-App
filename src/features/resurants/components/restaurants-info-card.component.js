@@ -5,6 +5,7 @@ import { Image, Text, View, style, StyleSheet } from 'react-native'
 import { Card } from 'react-native-paper'
 import star from '../../../../assets/star.js'
 import open from '../../../../assets/open.js'
+import { Spacer } from '../../../components/spacer/spacer.component.js'
 
 /* padding: 10px; */
 const RestaurantCard = styled(Card)`
@@ -41,9 +42,6 @@ const RestaurantStatusContainer = styled(View)`
    flex-direction: row;
    justify-content: space-between;
 `
-const Icon = styled(View)`
-   margin: 0 ${(props) => props.theme.space[1]};
-`
 const RedText = styled(Text)`
    color: red;
 `
@@ -77,14 +75,14 @@ export const RestaurantInfoCard = (restaurant = {}) => {
                <Rating>{starRating}</Rating>
                <RestaurantStatusContainer>
                   {isOpenNow && (
-                     <Icon>
+                     <Spacer position="left" size="medium">
                         <SvgXml xml={open} width={15} height={15} />
-                     </Icon>
+                     </Spacer>
                   )}
                   {icon && (
-                     <Icon>
+                     <Spacer position="left" size="medium">
                         <Image style={styles.icon} source={{ uri: icon }} />
-                     </Icon>
+                     </Spacer>
                   )}
                </RestaurantStatusContainer>
             </SectionRow>
