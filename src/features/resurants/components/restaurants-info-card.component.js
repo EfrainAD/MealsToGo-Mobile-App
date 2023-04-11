@@ -1,45 +1,19 @@
 import React from 'react'
-import styled from 'styled-components'
 import { SvgXml } from 'react-native-svg'
-import { Image, View } from 'react-native'
 import { Card } from 'react-native-paper'
 import star from '../../../../assets/star.js'
 import open from '../../../../assets/open.js'
 import { Spacer } from '../../../components/spacer/spacer.component.js'
 import { Text } from '../../../components/typograghy/text.component.js'
-
-/* padding: 10px; */
-const RestaurantCard = styled(Card)`
-   background: ${(props) => props.theme.colors.bg.primary};
-   margin: ${(props) => props.theme.space[2]};
-   padding: ${(props) => props.theme.space[3]};
-`
-const Address = styled(Text)`
-   font-family: ${(props) => props.theme.fonts.body};
-   font-size: ${(props) => props.theme.fontSizes.caption};
-   color: ${(props) => props.theme.colors.text.primary};
-   text-align: center;
-`
-const Info = styled(View)`
-   padding: ${(props) => props.theme.space[4]};
-`
-const Rating = styled(View)`
-   flex-direction: row;
-   justify-content: center;
-`
-const SectionRow = styled(View)`
-   flex-direction: row;
-   justify-content: space-between;
-   margin: ${(props) => props.theme.space[2]} 0;
-`
-const RestaurantStatusContainer = styled(View)`
-   flex-direction: row;
-   justify-content: space-between;
-`
-const Icon = styled(Image)`
-   width: 20;
-   height: 20;
-`
+import {
+   Address,
+   Icon,
+   Info,
+   Rating,
+   RestaurantCard,
+   RestaurantStatusContainer,
+   SectionRow,
+} from './restaurants-info-card.styles.js'
 
 export const RestaurantInfoCard = (restaurant = {}) => {
    const {
