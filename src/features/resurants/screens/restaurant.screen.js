@@ -1,11 +1,5 @@
 import React, { useState } from 'react'
-import {
-   SafeAreaView,
-   FlatList,
-   View,
-   StatusBar,
-   StyleSheet,
-} from 'react-native'
+import { SafeAreaView, FlatList, View, StatusBar } from 'react-native'
 import { Searchbar } from 'react-native-paper'
 import styled from 'styled-components'
 import { RestaurantInfoCard } from '../components/restaurants-info-card.component'
@@ -18,6 +12,9 @@ const SearchbarContainer = styled(View)`
    padding: ${(props) => props.theme.space[3]};
    ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px;`}
 `
+const RestaurantList = styled(FlatList).attrs({
+   contentContainerStyle: { padding: 16 },
+})``
 
 export const RestaurantsScreen = () => {
    const [searchQuery, setSearchQuery] = useState(null)
@@ -31,7 +28,7 @@ export const RestaurantsScreen = () => {
                value={searchQuery}
             />
          </SearchbarContainer>
-         <FlatList
+         <RestaurantList
             data={[
                { name: 0 },
                { name: 1 },
@@ -56,12 +53,7 @@ export const RestaurantsScreen = () => {
             ]}
             renderItem={() => <RestaurantInfoCard />}
             keyExtractor={(item) => item.name}
-            contentContainerStyle={styles.flatList}
          />
       </Container>
    )
 }
-
-const styles = StyleSheet.create({
-   flatList: { padding: 16 },
-})
