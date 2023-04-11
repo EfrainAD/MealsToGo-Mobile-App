@@ -1,24 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 import { SvgXml } from 'react-native-svg'
-import { Image, Text, View, style, StyleSheet } from 'react-native'
+import { Image, View } from 'react-native'
 import { Card } from 'react-native-paper'
 import star from '../../../../assets/star.js'
 import open from '../../../../assets/open.js'
 import { Spacer } from '../../../components/spacer/spacer.component.js'
+import { Text } from '../../../components/typograghy/text.component.js'
 
 /* padding: 10px; */
 const RestaurantCard = styled(Card)`
    background: ${(props) => props.theme.colors.bg.primary};
    margin: ${(props) => props.theme.space[2]};
    padding: ${(props) => props.theme.space[3]};
-`
-const Title = styled(Text)`
-   font-family: ${(props) => props.theme.fonts.body};
-   color: ${(props) => props.theme.colors.text.primary};
-   font-weight: ${(props) => props.theme.fontWeights.bold};
-   text-align: center;
-   font-size: ${(props) => props.theme.fontSizes.title};
 `
 const Address = styled(Text)`
    font-family: ${(props) => props.theme.fonts.body};
@@ -42,8 +36,9 @@ const RestaurantStatusContainer = styled(View)`
    flex-direction: row;
    justify-content: space-between;
 `
-const RedText = styled(Text)`
-   color: red;
+const Icon = styled(Image)`
+   width: 20;
+   height: 20;
 `
 
 export const RestaurantInfoCard = (restaurant = {}) => {
@@ -67,9 +62,9 @@ export const RestaurantInfoCard = (restaurant = {}) => {
       <RestaurantCard elevation={5}>
          <Card.Cover source={{ uri: photos[0] }} />
          <Info>
-            <Title>{name}</Title>
+            <Text variant="label">{name}</Text>
             {isClosedTemporarily && (
-               <RedText variant="label">CLOSED TEMPORARILY</RedText>
+               <Text variant="error">CLOSED TEMPORARILY</Text>
             )}
             <SectionRow>
                <Rating>{starRating}</Rating>
@@ -81,7 +76,7 @@ export const RestaurantInfoCard = (restaurant = {}) => {
                   )}
                   {icon && (
                      <Spacer position="left" size="medium">
-                        <Image style={styles.icon} source={{ uri: icon }} />
+                        <Icon source={{ uri: icon }} />
                      </Spacer>
                   )}
                </RestaurantStatusContainer>
@@ -91,6 +86,3 @@ export const RestaurantInfoCard = (restaurant = {}) => {
       </RestaurantCard>
    )
 }
-const styles = StyleSheet.create({
-   icon: { width: 20, height: 20 },
-})
