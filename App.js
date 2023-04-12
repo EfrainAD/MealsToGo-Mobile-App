@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { Text } from 'react-native'
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar'
 import { RestaurantsScreen } from './src/features/resurants/screens/restaurant.screen'
 import { NavigationContainer } from '@react-navigation/native'
@@ -11,20 +11,24 @@ import {
    Oswald_400Regular,
 } from '@expo-google-fonts/oswald'
 import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato'
+import { SafeArea } from './src/components/utilities/safeArea.component'
 
 function MapsScreen() {
    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <SafeArea
+         style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+      >
          <Text>Maps!</Text>
-      </View>
+      </SafeArea>
    )
 }
-
 function SettingsScreen() {
    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <SafeArea
+         style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+      >
          <Text>Settings!</Text>
-      </View>
+      </SafeArea>
    )
 }
 const Tab = createBottomTabNavigator()
