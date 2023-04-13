@@ -14,6 +14,12 @@ import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato'
 import { SafeArea } from './src/components/utilities/safeArea.component'
 import { Ionicons } from '@expo/vector-icons'
 
+const TAB_ICONS = {
+   Restaurant: 'md-restaurant',
+   Maps: 'map',
+   Settings: 'md-settings',
+}
+
 function MapsScreen() {
    return (
       <SafeArea
@@ -32,6 +38,17 @@ function SettingsScreen() {
       </SafeArea>
    )
 }
+
+const screenOptions = ({ route }) => ({
+   tabBarIcon: ({ color, size }) => {
+      const iconName = TAB_ICONS[route.name]
+
+      return <Ionicons name={iconName} size={size} color={color} />
+   },
+   tabBarActiveTintColor: theme.colors.ui.primary,
+   tabBarInactiveTintColor: theme.colors.ui.secondary,
+})
+
 const Tab = createBottomTabNavigator()
 
 export default function App() {
@@ -43,35 +60,7 @@ export default function App() {
       <>
          <ThemeProvider theme={theme}>
             <NavigationContainer>
-               <Tab.Navigator
-                  screenOptions={({ route }) => ({
-                     tabBarIcon: ({ color, size }) => {
-                        let iconName
-
-                        switch (route.name) {
-                           case 'Restaurant':
-                              iconName = 'md-home'
-                              break
-                           case 'Maps':
-                              iconName = 'map'
-                              break
-                           case 'Settings':
-                              iconName = 'md-settings'
-                              break
-                        }
-
-                        return (
-                           <Ionicons
-                              name={iconName}
-                              size={size}
-                              color={color}
-                           />
-                        )
-                     },
-                     tabBarActiveTintColor: theme.colors.ui.primary,
-                     tabBarInactiveTintColor: theme.colors.ui.secondary,
-                  })}
-               >
+               <Tab.Navigator screenOptions={screenOptions}>
                   <Tab.Screen name="Restaurant" component={RestaurantsScreen} />
                   <Tab.Screen name="Maps" component={MapsScreen} />
                   <Tab.Screen name="Settings" component={SettingsScreen} />
