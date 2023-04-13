@@ -12,6 +12,7 @@ import {
 } from '@expo-google-fonts/oswald'
 import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato'
 import { SafeArea } from './src/components/utilities/safeArea.component'
+import { Ionicons } from '@expo/vector-icons'
 
 function MapsScreen() {
    return (
@@ -42,7 +43,35 @@ export default function App() {
       <>
          <ThemeProvider theme={theme}>
             <NavigationContainer>
-               <Tab.Navigator>
+               <Tab.Navigator
+                  screenOptions={({ route }) => ({
+                     tabBarIcon: ({ color, size }) => {
+                        let iconName
+
+                        switch (route.name) {
+                           case 'Restaurant':
+                              iconName = 'md-home'
+                              break
+                           case 'Maps':
+                              iconName = 'map'
+                              break
+                           case 'Settings':
+                              iconName = 'md-settings'
+                              break
+                        }
+
+                        return (
+                           <Ionicons
+                              name={iconName}
+                              size={size}
+                              color={color}
+                           />
+                        )
+                     },
+                     tabBarActiveTintColor: theme.colors.ui.primary,
+                     tabBarInactiveTintColor: theme.colors.ui.secondary,
+                  })}
+               >
                   <Tab.Screen name="Restaurant" component={RestaurantsScreen} />
                   <Tab.Screen name="Maps" component={MapsScreen} />
                   <Tab.Screen name="Settings" component={SettingsScreen} />
