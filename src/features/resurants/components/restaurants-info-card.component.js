@@ -15,7 +15,7 @@ import {
    SectionRow,
 } from './restaurants-info-card.styles.js'
 
-export const RestaurantInfoCard = (restaurant = {}) => {
+export const RestaurantInfoCard = ({ restaurant }) => {
    const {
       name = 'Some Restaurant',
       icon = 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png',
