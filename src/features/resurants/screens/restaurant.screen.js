@@ -7,7 +7,6 @@ import { RestaurantInfoCard } from '../components/restaurants-info-card.componen
 import { SafeArea } from '../../../components/utilities/safeArea.component'
 import { RestaurantsContext } from '../../../services/restaurants/restaurants.context'
 import { ActivityIndicator } from 'react-native-paper'
-import { theme } from '../../../infrastructure/theme'
 
 const SearchbarContainer = styled(View)`
    background-color: ${(props) => props.theme.colors.brand.primary};
@@ -16,11 +15,17 @@ const SearchbarContainer = styled(View)`
 const RestaurantList = styled(FlatList).attrs({
    contentContainerStyle: { padding: 16 },
 })``
-
+const Loading = styled(ActivityIndicator)`
+   margin-left: -25px;
+`
+const LoadingContainer = styled(View)`
+   position: absolute;
+   top: 50%;
+   left: 50%;
+`
 export const RestaurantsScreen = () => {
    const [searchQuery, setSearchQuery] = useState(null)
    const { restaurants, isLoading, error } = useContext(RestaurantsContext)
-   console.log(error)
 
    return (
       <SafeArea>
@@ -32,7 +37,9 @@ export const RestaurantsScreen = () => {
             />
          </SearchbarContainer>
          {isLoading ? (
-            <ActivityIndicator animating={isLoading} size="large" />
+            <LoadingContainer>
+               <Loading size="large" />
+            </LoadingContainer>
          ) : (
             <RestaurantList
                data={restaurants}
