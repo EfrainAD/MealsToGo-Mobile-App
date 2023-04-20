@@ -14,6 +14,7 @@ import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato'
 import { SafeArea } from './src/components/utilities/safeArea.component'
 import { Ionicons } from '@expo/vector-icons'
 import { RestaurantsContextProvider } from './src/services/restaurants/restaurants.context'
+import { LocationContextProvider } from './src/services/location/location.context'
 
 const TAB_ICONS = {
    Restaurant: 'md-restaurant',
@@ -60,18 +61,23 @@ export default function App() {
    return (
       <>
          <ThemeProvider theme={theme}>
-            <RestaurantsContextProvider>
-               <NavigationContainer>
-                  <Tab.Navigator screenOptions={screenOptions}>
-                     <Tab.Screen
-                        name="Restaurant"
-                        component={RestaurantsScreen}
-                     />
-                     <Tab.Screen name="Maps" component={MapsScreen} />
-                     <Tab.Screen name="Settings" component={SettingsScreen} />
-                  </Tab.Navigator>
-               </NavigationContainer>
-            </RestaurantsContextProvider>
+            <LocationContextProvider>
+               <RestaurantsContextProvider>
+                  <NavigationContainer>
+                     <Tab.Navigator screenOptions={screenOptions}>
+                        <Tab.Screen
+                           name="Restaurant"
+                           component={RestaurantsScreen}
+                        />
+                        <Tab.Screen name="Maps" component={MapsScreen} />
+                        <Tab.Screen
+                           name="Settings"
+                           component={SettingsScreen}
+                        />
+                     </Tab.Navigator>
+                  </NavigationContainer>
+               </RestaurantsContextProvider>
+            </LocationContextProvider>
          </ThemeProvider>
          <ExpoStatusBar style="auto" />
       </>

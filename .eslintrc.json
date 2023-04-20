@@ -2,6 +2,7 @@
    "extends": "@react-native",
    "rules": {
       "quotes": [2, "single", {"avoidEscape": true}],
-      "semi": "off"
+      "semi": "off",
+      "curly": ["error", "multi-line"]
    }
 }
