@@ -4,8 +4,9 @@ import { locations } from './location.mock'
 export const locationRequest = (searchTerm) => {
    return new Promise((resolve, reject) => {
       const locationMocks = locations[searchTerm]
+
       if (!locationMocks) reject('not found')
-      console.log('sending alog', locationMocks)
+
       resolve(locationMocks)
    })
 }
