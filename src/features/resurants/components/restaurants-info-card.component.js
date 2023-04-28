@@ -26,10 +26,16 @@ export const RestaurantInfoCard = ({ restaurant }) => {
       isOpenNow = true,
       rating = 4,
       isClosedTemporarily = true,
+      placeId = Math.floor(Math.random() * 90000) + 10000,
    } = restaurant
 
    const starRating = Array.from({ length: Math.floor(rating) }, (_, index) => (
-      <SvgXml key={index} xml={star} width={20} height={20} />
+      <SvgXml
+         key={`star-${placeId}-${index}`}
+         xml={star}
+         width={20}
+         height={20}
+      />
    ))
 
    return (
