@@ -24,7 +24,7 @@ const SpacerView = styled.View`
    ${({ variant }) => variant}
 `
 
-export const Spacer = (position, size, children) => {
+export const Spacer = ({ position, size, children }) => {
    const theme = useTheme()
    const variant = getVariant(position, size, theme)
 
