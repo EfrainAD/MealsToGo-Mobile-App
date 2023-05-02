@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { FlatList, View } from 'react-native'
 import styled from 'styled-components'
 
@@ -20,7 +20,6 @@ const LoadingContainer = styled(View)`
    left: 50%;
 `
 export const RestaurantsScreen = () => {
-   // const [searchQuery, setSearchQuery] = useState(null)
    const { restaurants, isLoading, error } = useContext(RestaurantsContext)
 
    return (
