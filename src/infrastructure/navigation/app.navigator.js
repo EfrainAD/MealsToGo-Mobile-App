@@ -44,7 +44,7 @@ const screenOptions = ({ route }) => ({
    tabBarInactiveTintColor: theme.colors.ui.secondary,
 })
 
-const AppNavigator = () => {
+export const AppNavigator = () => {
    return (
       <NavigationContainer>
          <Tab.Navigator screenOptions={screenOptions}>
@@ -55,5 +55,3 @@ const AppNavigator = () => {
       </NavigationContainer>
    )
 }
-
-export default AppNavigator
